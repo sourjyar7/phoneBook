@@ -64,6 +64,11 @@ export class HomeComponent implements OnInit {
     searchedData : new FormControl()
   }) ;
 
+  addForm = new FormGroup({
+    contactName : new FormControl(),
+    contactNumber : new FormControl()
+  }) ;
+
 
   constructor() { }
 
@@ -75,11 +80,15 @@ export class HomeComponent implements OnInit {
     console.log(data);
     if(data == "")
       {  
-         this.displayedContacts = this.contacts;
+        this.displayedContacts=[];
+
+         for(let i=0;i<this.contacts.length;i++)
+           this.displayedContacts.push(this.contacts[i]);
         }
     else{  
         for (let i = 0; i < this.displayedContacts.length; i++) {
           let name = this.displayedContacts[i].name;
+          let number = this.displayedContacts[i].number;
           if(name.toUpperCase().indexOf(data.toUpperCase()) == -1) {
                 this.displayedContacts.splice(i,1);
                  i--;
@@ -87,6 +96,17 @@ export class HomeComponent implements OnInit {
           
         }
     }
+  }
+
+  addContact(){
+
+    let newContact = {
+      name : this.addForm.get("contactName")?.value,
+      number : this.addForm.get("contactNumber")?.value
+    }
+
+    this.contacts.push(newContact);
+    this.displayedContacts.push(newContact);
   }
 
 }
