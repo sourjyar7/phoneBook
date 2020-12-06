@@ -1,0 +1,25 @@
+ <div class="container my-1">
+        <div class="card rounded">
+            
+            <div class="card-header d-inline bg-dark text-light">
+                <h5 class="card-title d-inline">{{titleText}}</h5>
+                <form [formGroup]="searchForm" (ngSubmit)="search()" class="form-inline my-2 my-lg-0 float-right">
+                  <input class="form-control mr-sm-2" (keyup)="search()" type="search" placeholder="Search" aria-label="Search" formControlName="searchedData">
+                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+           
+            <ul class="list-group list-group-flush" *ngFor="let contact of displayedContacts">
+             <li class="list-group-item onHoverLi">{{contact.name+"  -  "+contact.number}}
+               <span class="float-right onHoverIcons mx-3"><fa-icon [icon]="faDelete"></fa-icon></span>
+               <span class="float-right onHoverIcons mx-3"><fa-icon [icon]="faEdit"></fa-icon></span>
+             </li>   
+            </ul>
+            
+            
+        </div>
+</div>
+ 
+ 
+ 
+            
